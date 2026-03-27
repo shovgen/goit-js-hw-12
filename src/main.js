@@ -1,6 +1,6 @@
 
 import { getImagesByQuery } from './js/pixabay-api';
-import { createGallery, clearGalerry, showLoad, hiddenLoad ,showMoreLoad, hiddenMoreLoad, } from './js/render-functions';
+import { createGallery, clearGallerry, showLoad, hiddenLoad ,showMoreLoad, hiddenMoreLoad, } from './js/render-functions';
 
 import iziToast from 'izitoast';
 import "izitoast/dist/css/iziToast.min.css";
@@ -18,7 +18,7 @@ let totalHits = 0;
 form.addEventListener('submit',async (e) => {
     e.preventDefault();
  
-    const currentQuery = e.currentTarget.elements['search-text'].value.trim();
+    currentQuery = e.currentTarget.elements['search-text'].value.trim();
     if (!currentQuery) {
         iziToast.warning({
             title: 'Warning',
@@ -27,7 +27,7 @@ form.addEventListener('submit',async (e) => {
         return
     }
     currentPage = 1;
-    clearGalerry();
+    clearGallerry();
     hiddenMoreLoad() 
     showLoad();
 
@@ -63,15 +63,19 @@ form.addEventListener('submit',async (e) => {
 loadMore.addEventListener('click', async () => {
     currentPage += 1;
     hiddenMoreLoad() 
-
-    showLoad();
+showLoad() 
+    
     try {
         const data = await getImagesByQuery(currentQuery, currentPage);
         createGallery(data.hits);
         checkLoadMoreStatus();
 
-  const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
-        window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
+        const card = document.querySelector('.gallery-item');
+        if (card) {
+              const { height: cardHeight } = card.getBoundingClientRect();
+            
+            window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
+        }
     }   catch (error) {
         console.log(error);
     } finally {

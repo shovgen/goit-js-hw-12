@@ -13,8 +13,8 @@ const API_KEY = '55119464-7e56b6e0115e09eda171fae18';
         q: query,
         image_type: 'photo',
         orientation: 'horizontal',
-         safesearch: 'true',
-         pageSize: 15,
+         safesearch: true,
+         per_page: 15,
         page: page,
     }
  });

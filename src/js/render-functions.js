@@ -36,7 +36,7 @@ export function createGallery(images) {
   lightbox.refresh();
 }
 
-export function clearGalerry() {
+export function clearGallerry() {
     gallery.innerHTML = '';
 }
 
