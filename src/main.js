@@ -77,7 +77,12 @@ showLoad()
             window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
         }
     }   catch (error) {
-        console.log(error);
+        iziToast.error({
+            title: 'Error',
+            message: 'Sorry, something went wrong while loading more images. Please try again later!',
+            position: 'topRight',
+        });
+        console.error('Load More Error:', error);
     } finally {
         hiddenLoad();
     }
