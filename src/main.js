@@ -38,7 +38,7 @@ form.addEventListener('submit',async (e) => {
         
         if (data.hits.length === 0) {
             iziToast.error({
-                message: 'Sorry, there are no images matching your search query. Please try again!',
+                message:  ("We're sorry, but you've reached the and of search results.") ,
                 position: 'topRight',
             });
         } else {
@@ -94,7 +94,7 @@ showLoad()
 
 
 function checkLoadMoreStatus() {
-    const maxPage = Math.ceil(totalHits / 15);
+    const maxPage = Math.ceil(totalHits / per_page);
 
     if (currentPage >= maxPage) {
         hiddenMoreLoad();
